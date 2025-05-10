@@ -30,3 +30,17 @@ def split_text(text: str, chunk_size=500, overlap=50) -> List[str]:
 
 chunks = split_text(text)
 st.write(f"🔹 Split into {len(chunks)} chunks.")
+
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+# Load embedding model
+@st.cache_resource
+def load_embedding_model():
+    return SentenceTransformer("all-MiniLM-L6-v2")
+
+embedder = load_embedding_model()
+
+# Create embeddings
+with st.spinner("🔍 Generating embeddings..."):
+    embeddings = embedder.encode(chunks).astype("float32")
