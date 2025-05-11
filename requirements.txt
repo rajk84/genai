@@ -5,3 +5,4 @@ sentencepiece  # needed for T5
 PyPDF2
 sentence-transformers
 faiss-cpu
+typing
